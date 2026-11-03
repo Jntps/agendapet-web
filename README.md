@@ -317,19 +317,12 @@ planejamento/sprint-planning.md
 ### Kanban
 
 Link do quadro:
-[ADICIONAR LINK REAL]
+(https://trello.com/invite/b/6aea3e644779f437c1ec0bc5/ATTIedc3d5c0a9432b39d3942be78ad2cf593179CECE/agenda-pet-web)
 
 ### Repositório
 
 Link do GitHub:
 https://github.com/Jntps/agendapet-web.git
-
-### Pontos planejados e entregues
-
-Pontos planejados: 49.
-
-Pontos entregues:
-[ATUALIZAR APÓS A VERIFICAÇÃO]
 
 ## 14. Retrospectiva
 
