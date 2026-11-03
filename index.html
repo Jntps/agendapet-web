@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="AgendaPet Web: painel de agendamentos da Patinhas & Cia."
+  >
+
+  <meta name="theme-color" content="#16746c">
+
+  <title>AgendaPet Web | Patinhas & Cia</title>
+
+  <link rel="icon" href="./img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <script type="module" src="./js/app.js"></script>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#conteudo">
+    Ir para o conteúdo
+  </a>
+
+  <header class="topo">
+    <div class="container topo-interior">
+
+      <a class="marca" href="#conteudo" aria-label="AgendaPet: ir ao início">
+        <img src="./img/logo.svg" alt="" width="48" height="48">
+
+        <span>
+          <strong>AgendaPet</strong>
+          <small>Patinhas & Cia</small>
+        </span>
+      </a>
+
+      <nav class="navegacao" aria-label="Navegação principal">
+        <a href="#agenda">Agenda</a>
+        <a href="#novo">Novo agendamento</a>
+        <a href="#fechamento">Fechamento</a>
+      </nav>
+
+      <div class="acoes-topo">
+        <span class="relogio" aria-label="Hora atual">--:--</span>
+
+        <button
+          class="botao-tema"
+          type="button"
+          aria-pressed="false"
+          title="Alternar tema"
+        >
+          ☾ <span>Tema</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="container principal" id="conteudo">
+
+    <div class="boas-vindas">
+      <div>
+        <p class="sobretitulo">
+          PAINEL DE ATENDIMENTOS
+          <span class="separador">•</span>
+          <span class="data-por-extenso">—</span>
+        </p>
+
+        <h1>
+          Um dia cheio de <em>bons cuidados.</em> 🐾
+        </h1>
+
+        <p>
+          Organize os horários e acompanhe cada pet com carinho.
+        </p>
+      </div>
+
+      <a class="botao botao-principal botao-cabecalho" href="#novo">
+        ＋ Novo agendamento
+      </a>
+    </div>
+
+    <!-- RESUMO DOS AGENDAMENTOS -->
+
+    <section aria-label="Resumo do dia" class="resumo-rapido">
+
+      <article class="indicador">
+        <span class="indicador-icone icone-pet">🐾</span>
+
+        <span>
+          <small>Agendamentos</small>
+          <strong class="kpi-total">0</strong>
+          <span class="indicador-extra">No dia selecionado</span>
+        </span>
+      </article>
+
+      <article class="indicador">
+        <span class="indicador-icone icone-check">✓</span>
+
+        <span>
+          <small>Concluídos</small>
+          <strong class="kpi-concluidos">0</strong>
+          <span class="indicador-extra">Atendimentos feitos</span>
+        </span>
+      </article>
+
+      <article class="indicador">
+        <span class="indicador-icone icone-money">R$</span>
+
+        <span>
+          <small>Faturamento</small>
+          <strong class="kpi-faturamento">R$ 0,00</strong>
+          <span class="indicador-extra">Somente concluídos</span>
+        </span>
+      </article>
+
+      <article class="indicador">
+        <span class="indicador-icone icone-clock">◷</span>
+
+        <span>
+          <small>Próximo horário</small>
+          <strong class="kpi-proximo">—</strong>
+          <span class="indicador-extra">Ainda agendado</span>
+        </span>
+      </article>
+
+    </section>
+
+    <div class="painel">
+
+      <div class="conteudo-principal">
+
+        <!-- AGENDA DO DIA -->
+
+        <section
+          class="cartao"
+          id="agenda"
+          aria-labelledby="titulo-agenda"
+        >
+
+          <div class="secao-cabecalho">
+
+            <div>
+              <span class="etiqueta">SEU DIA ORGANIZADO</span>
+
+              <h2 id="titulo-agenda">
+                Agenda do dia <span aria-hidden="true">✦</span>
+              </h2>
+
+              <p>
+                Veja, encontre e atualize os próximos atendimentos.
+              </p>
+            </div>
+
+            <label class="campo-data-agenda">
+              Ver data
+
+              <input
+                class="dia-agenda"
+                type="date"
+                aria-label="Data da agenda"
+              >
+            </label>
+
+          </div>
+
+          <div class="barra-filtros">
+
+            <label class="busca">
+              <span aria-hidden="true">⌕</span>
+
+              <span class="visualmente-oculto">
+                Buscar tutor ou pet
+              </span>
+
+              <input
+                class="busca-input"
+                type="search"
+                placeholder="Buscar tutor ou pet..."
+              >
+            </label>
+
+            <label class="filtro-grupo">
+              <span class="visualmente-oculto">
+                Filtrar por status
+              </span>
+
+              <select class="filtro-status">
+                <option value="Todos">Todos os status</option>
+                <option value="Agendado">Agendados</option>
+                <option value="Concluído">Concluídos</option>
+                <option value="Cancelado">Cancelados</option>
+              </select>
+            </label>
+
+          </div>
+
+          <div class="lista-legenda">
+            <strong class="contador-agenda">
+              0 agendamentos
+            </strong>
+
+            <span>Ordenados por horário</span>
+          </div>
+
+          <div
+            class="lista-agenda"
+            aria-live="polite"
+            aria-relevant="additions removals"
+          ></div>
+
+          <div class="rodape-agenda">
+
+            <span>
+              Atalhos:
+              <kbd>N</kbd> novo ·
+              <kbd>/</kbd> buscar ·
+              <kbd>Esc</kbd> limpar
+            </span>
+
+            <button
+              class="botao-link btn-exportar"
+              type="button"
+            >
+              Exportar agenda ↓
+            </button>
+
+          </div>
+
+        </section>
+
+        <!-- NOVO AGENDAMENTO -->
+
+        <section
+          class="cartao formulario-cartao"
+          id="novo"
+          aria-labelledby="titulo-novo"
+        >
+
+          <div class="secao-cabecalho">
+            <div>
+              <span class="etiqueta">MAIS UM PET FELIZ</span>
+
+              <h2 id="titulo-novo">Novo agendamento</h2>
+
+              <p>
+                Preencha os dados do tutor e do atendimento.
+              </p>
+            </div>
+
+            <span class="icone-form" aria-hidden="true">✎</span>
+          </div>
+
+          <form class="formulario" novalidate>
+
+            <div class="grade-campos">
+
+              <div class="campo">
+                <label for="tutor">Nome do tutor *</label>
+
+                <input
+                  id="tutor"
+                  name="tutor"
+                  autocomplete="name"
+                  required
+                  placeholder="Ex.: Amanda Silva"
+                >
+              </div>
+
+              <div class="campo">
+                <label for="telefone">Telefone *</label>
+
+                <input
+                  id="telefone"
+                  name="telefone"
+                  type="tel"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  required
+                  placeholder="(47) 99999-9999"
+                >
+              </div>
+
+              <div class="campo">
+                <label for="pet">Nome do pet *</label>
+
+                <input
+                  id="pet"
+                  name="pet"
+                  required
+                  placeholder="Ex.: Mel"
+                >
+              </div>
+
+              <div class="campo">
+                <label for="especie">Espécie *</label>
+
+                <select id="especie" name="especie" required>
+                  <option value="">Selecione</option>
+                  <option>Cachorro</option>
+                  <option>Gato</option>
+                  <option>Outro</option>
+                </select>
+              </div>
+
+              <div class="campo campo-inteiro">
+                <label for="servico">Serviço *</label>
+
+                <select id="servico" name="servico" required disabled>
+                  <option value="">Carregando serviços...</option>
+                </select>
+              </div>
+
+              <div class="campo">
+                <label for="data">Data *</label>
+
+                <input
+                  id="data"
+                  name="data"
+                  type="date"
+                  required
+                >
+              </div>
+
+              <div class="campo">
+                <label for="horario">Horário *</label>
+
+                <input
+                  id="horario"
+                  name="horario"
+                  type="time"
+                  min="08:00"
+                  max="19:00"
+                  required
+                >
+              </div>
+
+              <div class="campo campo-inteiro">
+                <label for="observacoes">
+                  Observações
+                  <span class="campo-opcional">(opcional)</span>
+                </label>
+
+                <textarea
+                  id="observacoes"
+                  name="observacoes"
+                  rows="3"
+                  placeholder="Algum cuidado especial?"
+                ></textarea>
+              </div>
+
+            </div>
+
+            <!-- ATENDIMENTO DOMICILIAR -->
+
+            <label class="check-domicilio">
+
+              <input
+                id="domiciliar"
+                name="domiciliar"
+                type="checkbox"
+                disabled
+              >
+
+              <span>
+                <strong>Atendimento a domicílio</strong>
+
+                <small>
+                  Disponível para serviços selecionados · + R$ 20,00
+                </small>
+              </span>
+
+            </label>
+
+            <fieldset class="endereco-campos" hidden>
+
+              <legend>Endereço do atendimento</legend>
+
+              <div class="grade-campos">
+
+                <div class="campo">
+                  <label for="cep">CEP *</label>
+
+                  <input
+                    id="cep"
+                    name="cep"
+                    inputmode="numeric"
+                    maxlength="9"
+                    placeholder="00000-000"
+                  >
+                </div>
+
+                <div class="campo">
+                  <label for="numero">Número *</label>
+
+                  <input
+                    id="numero"
+                    name="numero"
+                    placeholder="Ex.: 125"
+                  >
+                </div>
+
+                <div class="campo">
+                  <label for="logradouro">Logradouro *</label>
+                  <input id="logradouro" name="logradouro">
+                </div>
+
+                <div class="campo">
+                  <label for="bairro">Bairro *</label>
+                  <input id="bairro" name="bairro">
+                </div>
+
+                <div class="campo">
+                  <label for="cidade">Cidade *</label>
+                  <input id="cidade" name="cidade">
+                </div>
+
+                <div class="campo">
+                  <label for="uf">UF *</label>
+                  <input id="uf" name="uf" maxlength="2">
+                </div>
+
+                <div class="campo campo-inteiro">
+                  <label for="complemento">Complemento</label>
+                  <input id="complemento" name="complemento">
+                </div>
+
+              </div>
+
+              <p
+                class="cep-feedback mensagem-inline"
+                role="status"
+              ></p>
+
+            </fieldset>
+
+            <!-- AVISO DE FERIADO -->
+
+            <div class="feriado-painel" hidden>
+
+              <p
+                class="feriado-mensagem"
+                role="status"
+              ></p>
+
+              <label class="feriado-confirma" hidden>
+                <input
+                  type="checkbox"
+                  name="confirmarFeriado"
+                >
+                Agendar mesmo assim
+              </label>
+
+            </div>
+
+            <p
+              class="erro-formulario"
+              role="alert"
+              tabindex="-1"
+            ></p>
+
+            <div class="form-rodape">
+
+              <div class="estimativa">
+                <small>Valor estimado</small>
+                <strong class="preco-estimado">R$ 0,00</strong>
+              </div>
+
+              <button
+                type="submit"
+                class="botao botao-principal botao-salvar"
+              >
+                Confirmar agendamento →
+              </button>
+
+            </div>
+
+          </form>
+
+        </section>
+
+      </div>
+
+      <!-- BARRA LATERAL -->
+
+      <aside class="lateral" aria-label="Serviços e ferramentas">
+
+        <section
+          class="cartao servicos-cartao"
+          aria-labelledby="titulo-servicos"
+        >
+
+          <div class="secao-cabecalho">
+            <div>
+              <span class="etiqueta">
+                NOSSO CARINHO EM CADA DETALHE
+              </span>
+
+              <h2 id="titulo-servicos">
+                Nossos serviços
+              </h2>
+            </div>
+          </div>
+
+          <div
+            class="estado-servicos"
+            role="status"
+          >
+            Carregando serviços...
+          </div>
+
+          <div class="lista-servicos"></div>
+
+          <button
+            class="botao botao-secundario tentar-servicos"
+            type="button"
+            hidden
+          >
+            Tentar novamente
+          </button>
+
+        </section>
+
+        <section
+          class="cartao proximo-cartao"
+          aria-labelledby="titulo-lembrete"
+        >
+
+          <span class="etiqueta">NÃO PERCA A HORA</span>
+
+          <h2 id="titulo-lembrete">
+            Próximo atendimento
+          </h2>
+
+          <div class="lembrete-icone" aria-hidden="true">
+            ⏰
+          </div>
+
+          <p class="lembrete-texto" role="status">
+            Consultando agenda...
+          </p>
+
+          <button
+            class="botao botao-secundario pausa-lembretes"
+            type="button"
+            aria-pressed="false"
+          >
+            Pausar lembretes
+          </button>
+
+        </section>
+
+        <section class="cartao apoio-cartao">
+
+          <h2>Um painel mais leve ♡</h2>
+
+          <p>
+            Seus dados ficam salvos neste navegador.
+            Exporte um arquivo para guardar uma cópia.
+          </p>
+
+          <button
+            class="botao-link btn-limpar"
+            type="button"
+          >
+            Limpar meus dados
+          </button>
+
+        </section>
+
+      </aside>
+
+    </div>
+
+    <!-- FECHAMENTO DO DIA -->
+
+    <section
+      class="cartao fechamento-cartao"
+      id="fechamento"
+      aria-labelledby="titulo-fechamento"
+    >
+
+      <div class="secao-cabecalho">
+
+        <div>
+          <span class="etiqueta">RESUMO FINANCEIRO</span>
+
+          <h2 id="titulo-fechamento">
+            Fechamento do dia
+          </h2>
+
+          <p>
+            Os valores refletem os atendimentos da data selecionada.
+          </p>
+        </div>
+
+        <span class="fechamento-selo" aria-hidden="true">✦</span>
+
+      </div>
+
+      <div class="fechamento-grid">
+
+        <div>
+          <small>Atendimentos totais</small>
+          <strong class="fechamento-total">0</strong>
+        </div>
+
+        <div>
+          <small>Finalizados</small>
+          <strong class="fechamento-concluidos">0</strong>
+        </div>
+
+        <div>
+          <small>Cancelados</small>
+          <strong class="fechamento-cancelados">0</strong>
+        </div>
+
+        <div>
+          <small>Faturamento realizado</small>
+          <strong class="fechamento-valor">R$ 0,00</strong>
+        </div>
+
+      </div>
+
+      <h3>Atendimentos por serviço</h3>
+
+      <ul class="resumo-servicos"></ul>
+
+      <!-- EXPORTAÇÃO JSON -->
+
+      <div class="exportacao" hidden>
+
+        <label for="dados-exportados">
+          JSON da agenda (pronto para copiar)
+        </label>
+
+        <textarea
+          id="dados-exportados"
+          class="dados-exportados"
+          readonly
+          rows="8"
+        ></textarea>
+
+        <div class="exportacao-acoes">
+
+          <button
+            class="botao botao-secundario btn-copiar"
+            type="button"
+          >
+            Copiar JSON
+          </button>
+
+          <button
+            class="botao botao-principal btn-download"
+            type="button"
+          >
+            Baixar arquivo .json
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+
+    <div class="container">
+      <span>
+        🐾 AgendaPet Web · Feito com carinho para a Patinhas & Cia
+      </span>
+
+      <span>Projeto acadêmico • 2026</span>
+    </div>
+
+  </footer>
+
+  <div
+    class="toast"
+    role="status"
+    aria-live="polite"
+    hidden
+  ></div>
+
+</body>
+</html>
