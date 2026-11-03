@@ -1,0 +1,65 @@
+[
+  {
+    "id": "banho",
+    "nome": "Banho completo",
+    "preco": 65,
+    "duracaoMinutos": 60,
+    "aceitaDomicilio": true,
+    "icone": "🛁",
+    "descricao": "Higiene e carinho para o seu pet."
+  },
+  {
+    "id": "tosa",
+    "nome": "Tosa higiênica",
+    "preco": 85,
+    "duracaoMinutos": 90,
+    "aceitaDomicilio": false,
+    "icone": "✂️",
+    "descricao": "Cuidado com conforto e segurança."
+  },
+  {
+    "id": "consulta",
+    "nome": "Consulta veterinária",
+    "preco": 150,
+    "duracaoMinutos": 45,
+    "aceitaDomicilio": true,
+    "icone": "🩺",
+    "descricao": "Acompanhamento da saúde do pet."
+  },
+  {
+    "id": "vacina",
+    "nome": "Vacinação",
+    "preco": 95,
+    "duracaoMinutos": 30,
+    "aceitaDomicilio": true,
+    "icone": "💉",
+    "descricao": "Proteção com acompanhamento profissional."
+  },
+  {
+    "id": "hotel",
+    "nome": "Hospedagem diária",
+    "preco": 120,
+    "duracaoMinutos": 60,
+    "aceitaDomicilio": false,
+    "icone": "🏡",
+    "descricao": "Acolhimento durante a estadia."
+  },
+  {
+    "id": "adestramento",
+    "nome": "Aula de adestramento",
+    "preco": 110,
+    "duracaoMinutos": 60,
+    "aceitaDomicilio": true,
+    "icone": "🐕",
+    "descricao": "Orientação para uma boa convivência."
+  },
+  {
+    "id": "corte-unhas",
+    "nome": "Corte de unhas",
+    "preco": 30,
+    "duracaoMinutos": 20,
+    "aceitaDomicilio": false,
+    "icone": "🐾",
+    "descricao": "Um cuidado rápido e delicado."
+  }
+]
