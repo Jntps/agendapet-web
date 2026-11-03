@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Depurar fechamento AgendaPet",
+      "program": "${workspaceFolder}/scripts/fechamento-dia.js",
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Depurar validador AgendaPet",
+      "program": "${workspaceFolder}/scripts/validar-agenda.cjs",
+      "args": [
+        "data/agenda-invalida.json"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": true,
+      "console": "integratedTerminal"
+    }
+  ]
+}
